@@ -3,7 +3,7 @@ require "json"
 
 class RedisTeletimeStore
   def initialize(server_id)
-    @redis = Redis.new(url: ENV["REDIS_URL"], ssl: true)
+    @redis = Redis.new(url: ENV["REDIS_URL"], ssl: true, ssl_params: { verify_mode: OpenSSL::SSL::VERIFY_NONE })
     @server_id = server_id
     @redis_key = "teletime_#{@server_id}"
   end
